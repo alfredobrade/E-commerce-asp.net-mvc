@@ -1,0 +1,32 @@
+A connection was successfully established with the server, but then an error occurred during the login process. 
+(provider: SSL Provider, error: 0 - The certificate chain was issued by an authority that is not trusted.)
+
+TrustServerCertificate=True
+
+
+
+Diferencias estre Controllers - ambos usan (using Microsoft.AspNetCore.Mvc;)
+*api controller
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CategoriaApiController : ControllerBase
+    {
+    }
+
+*mvc controller
+
+	public class CategoríaController : Controller
+    	{
+        public IActionResult Index()
+        {
+            return View();
+        }
+    	}
+
+para agregar nuevos modelos
+-crear MODELO - indicar la Key
+-cargar DbSet en clase Context
+-Crear Migration con add-migration y luego update-database
+-crear controlador
+-vistas index y create

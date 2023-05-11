@@ -1,0 +1,12 @@
+-Descargar Microsoft.EntityFrameworkCore.Tools
+-Tools>NuGet Package Manager>Package Manager Console
+
+
+add-migration <NameMigration>
+*agrega una clase migration con los scripts para agregar las tablas de las entidades creadas
+
+Remove-Migration
+*remueve la migracion creada
+
+update-database
+*conecta a la base de datos y la crea segun el ConnectionString

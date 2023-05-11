@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\E_commerce_rocosa.props" />
+</Project>
