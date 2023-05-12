@@ -2,6 +2,7 @@
 using E_commerce_rocosa.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_commerce_rocosa.Controllers
 {
@@ -53,42 +54,56 @@ namespace E_commerce_rocosa.Controllers
         // GET: TipoAplicacionController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id == null || id == 0) return NotFound();
+
+            var obj = _dbContext.Categoria.Find(id);
+            if (obj == null) return NotFound();
+
+            return View(obj);
         }
 
         // POST: TipoAplicacionController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(TipoAplicacion tipoAplicacion)
         {
             try
             {
+                _dbContext.TipoAplicacion.Update(tipoAplicacion);
+                _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(tipoAplicacion);
             }
         }
 
         // GET: TipoAplicacionController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (id == null || id == 0) return NotFound();
+
+            var obj = _dbContext.Categoria.Find(id);
+            if (obj == null) return NotFound();
+
+            return View(obj);
         }
 
         // POST: TipoAplicacionController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(TipoAplicacion obj)
         {
             try
             {
+                _dbContext.TipoAplicacion.Remove(obj); 
+                _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(obj);
             }
         }
     }

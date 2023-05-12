@@ -55,7 +55,7 @@ namespace E_commerce_rocosa.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tipoAplicacion");
+                    b.ToTable("TipoAplicacion");
                 });
 #pragma warning restore 612, 618
         }

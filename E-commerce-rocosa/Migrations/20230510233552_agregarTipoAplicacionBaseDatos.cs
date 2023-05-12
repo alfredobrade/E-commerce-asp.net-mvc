@@ -11,7 +11,7 @@ namespace E_commerce_rocosa.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "tipoAplicacion",
+                name: "TipoAplicacion",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,7 +20,7 @@ namespace E_commerce_rocosa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tipoAplicacion", x => x.Id);
+                    table.PrimaryKey("PK_TipoAplicacion", x => x.Id);
                 });
         }
 
@@ -28,7 +28,7 @@ namespace E_commerce_rocosa.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tipoAplicacion");
+                name: "TipoAplicacion");
         }
     }
 }

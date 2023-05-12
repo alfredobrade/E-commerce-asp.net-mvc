@@ -30,3 +30,20 @@ para agregar nuevos modelos
 -Crear Migration con add-migration y luego update-database
 -crear controlador
 -vistas index y create
+
+
+-debajo del forms ponemos la validacion para que se realice en el cliente y que
+no sea necesario que viaje hasta el servidor
+*no es necesario hacer nada mas. llama a la vista _ValidationScriptsPartial precreada y ejecuta
+lo que este seteado en los modelos pero en el cliente
+???? que hace para que valide en el cliente?
+@section Scripts{
+    @{ <partial name="_ValidationScriptsPartial" />
+}
+
+
+-Esto pone arriba de todo, dentro del form
+- dice que en la view del Edit no le esta pasando el ID y por eso no le funcionaría.
+- por eso es que pone este tag helper en un input
+<input asp-for="Id" hidden/>
+-en crear no se pone porque el ID se genera automaticamente
