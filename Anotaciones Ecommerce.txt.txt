@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=XI1WKa9TlnY
+
 A connection was successfully established with the server, but then an error occurred during the login process. 
 (provider: SSL Provider, error: 0 - The certificate chain was issued by an authority that is not trusted.)
 
@@ -47,3 +49,10 @@ lo que este seteado en los modelos pero en el cliente
 - por eso es que pone este tag helper en un input
 <input asp-for="Id" hidden/>
 -en crear no se pone porque el ID se genera automaticamente
+
+
+
+FontAwesome para descargar iconos 2hs10min
+
+<form method="post" asp-action="NewProduct" enctype="multipart/form-data">
+enctype="multipart/form-data" porque vamos a trabajar con IMAGENES

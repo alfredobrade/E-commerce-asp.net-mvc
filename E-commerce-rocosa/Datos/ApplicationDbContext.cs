@@ -12,6 +12,7 @@ namespace E_commerce_rocosa.Datos
 
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<TipoAplicacion> TipoAplicacion { get; set; }
+        public DbSet<Producto> Productos { get; set; }
 
 
     }

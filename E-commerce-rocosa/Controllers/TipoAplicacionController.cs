@@ -54,9 +54,9 @@ namespace E_commerce_rocosa.Controllers
         // GET: TipoAplicacionController/Edit/5
         public ActionResult Edit(int id)
         {
-            if (id == null || id == 0) return NotFound();
+            if (id == 0) return NotFound();
 
-            var obj = _dbContext.Categoria.Find(id);
+            var obj = _dbContext.TipoAplicacion.Find(id);
             if (obj == null) return NotFound();
 
             return View(obj);
@@ -70,7 +70,7 @@ namespace E_commerce_rocosa.Controllers
             try
             {
                 _dbContext.TipoAplicacion.Update(tipoAplicacion);
-                _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -98,7 +98,7 @@ namespace E_commerce_rocosa.Controllers
             try
             {
                 _dbContext.TipoAplicacion.Remove(obj); 
-                _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch

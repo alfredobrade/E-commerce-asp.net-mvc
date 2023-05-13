@@ -1,0 +1,95 @@
+﻿@model E_commerce_rocosa.Models.Producto
+
+
+@{
+    var titulo = "NewProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="NewProduct">
+    @if (Model.Id != 0)
+    {
+        titulo = "Editar Producto";
+        <input asp-for="Id" hidden />
+    }
+
+    <div class="border p-3">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <div class="form-group row">
+            <h2 class="text-info pl-3">@titulo</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="ProductName" class="form-label">Nombre Producto</label>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="Description" class="form-label">Descripcion</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="Price" class="form-label">Precio</label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="Categoria" class="form-label">Categoria</label>
+                    <input asp-for="Categoria" class="form-control" />
+                    <span asp-validation-for="Categoria" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="TipoAplicacion" class="form-label">Tipo Aplicacion</label>
+                    <input asp-for="TipoAplicacion" class="form-control" />
+                    <span asp-validation-for="TipoAplicacion" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="ImgUrl" class="form-label">Imagen</label>
+                    <input type="file" name="files" id="imagenId" class="form-control" />
+                </div>
+            </div>
+
+            <br />
+            <div class="d-grid gap-2 d-md-block">
+                @if (Model.Id != 0)
+                {
+
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                }
+                <a asp-controller="Producto" asp-action="Index" class="btn btn-success">Regresar</a>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

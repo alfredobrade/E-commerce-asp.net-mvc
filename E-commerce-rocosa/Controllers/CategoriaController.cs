@@ -44,7 +44,7 @@ namespace E_commerce_rocosa.Controllers
 
         }
         // GET: TipoAplicacionController/Edit/5
-        public ActionResult Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null || id == 0) return NotFound();
 
@@ -57,7 +57,7 @@ namespace E_commerce_rocosa.Controllers
         // POST: TipoAplicacionController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Categoria obj) //TODO: aca el le pasa el objeto.. pero porque? averiguar esto
+        public IActionResult Edit(Categoria obj) //TODO: aca el le pasa el objeto.. pero porque? averiguar esto
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace E_commerce_rocosa.Controllers
         }
 
         // GET: TipoAplicacionController/Delete/5
-        public ActionResult Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
 
@@ -92,7 +92,7 @@ namespace E_commerce_rocosa.Controllers
         // POST: TipoAplicacionController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Categoria obj)
+        public IActionResult Delete(Categoria obj)
         {
             
             try
