@@ -46,9 +46,11 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label asp-for="Categoria" class="form-label">Categoria</label>
-                    <input asp-for="Categoria" class="form-control" />
-                    <span asp-validation-for="Categoria" class="text-danger"></span>
+                    <label asp-for="CategoriaId" class="form-label">Categoria</label>
+                    <select asp-for="CategoriaId" asp-items="@ViewBag.categoriaDD" class="form-select">
+                        <option disabled selected>--seleccione categoria--</option>
+                    </select>
+                    
                 </div>
             </div>
             <div class="row">

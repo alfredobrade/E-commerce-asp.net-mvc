@@ -2,6 +2,7 @@
 using E_commerce_rocosa.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -28,24 +29,43 @@ namespace E_commerce_rocosa.Controllers
         // GET: ProductoController/Create
         public IActionResult NewProduct()
         {
-            
+            IEnumerable<SelectListItem> categoriaDropDown =
+                _dbContext.Categoria.Select(p => new SelectListItem
+                {
+                    Text = p.NombreCategoria,
+                    Value = p.Id.ToString()
+                });
+
+            ViewBag.categoriaDropDown = categoriaDropDown;
+
+            IEnumerable<SelectListItem> tipoApDropDown =
+                _dbContext.TipoAplicacion.Select(p => new SelectListItem
+                {
+                    Text = p.Nombre,
+                    Value = p.Id.ToString()
+                });
+
+            ViewBag.tipoApDropDown = tipoApDropDown;
+
             return View();
         }
 
         // POST: ProductoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> NewProduct(Producto producto)
+        public IActionResult NewProduct(Producto producto)
         {
+            
+
             try
             {
 				_dbContext.Productos.Add(producto);
-				_dbContext.SaveChangesAsync();
+				_dbContext.SaveChanges();
 				return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(producto);
             }
         }
 
@@ -55,10 +75,20 @@ namespace E_commerce_rocosa.Controllers
 
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> InsertOrUpdate(int? id)
         {
+            IEnumerable<SelectListItem> categoriaDropDown =
+                _dbContext.Categoria.Select(p => new SelectListItem
+                {
+                    Text = p.NombreCategoria,
+                    Value = p.Id.ToString()
+                });
+
+            ViewBag.categoriaDD = categoriaDropDown;
+
             var producto = new Producto();
             if (id == null)
             {

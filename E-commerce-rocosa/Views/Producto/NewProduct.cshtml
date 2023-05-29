@@ -40,18 +40,23 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label asp-for="Categoria" class="form-label">Categoria</label>
-                    <input asp-for="Categoria" class="form-control" />
-                    <span asp-validation-for="Categoria" class="text-danger"></span>
+                    <label asp-for="CategoriaId" class="form-label">Categoria</label>
+                    <select asp-for="CategoriaId" asp-items="@ViewBag.categoriaDropDown" class="form-select">
+                        <option disabled selected>--seleccione categoria--</option>
+                    </select>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label asp-for="TipoAplicacion" class="form-label">Tipo Aplicacion</label>
-                    <input asp-for="TipoAplicacion" class="form-control" />
-                    <span asp-validation-for="TipoAplicacion" class="text-danger"></span>
+                    <label asp-for="TipoAplicacionId" class="form-label">Tipo Ap</label>
+                    <select asp-for="TipoAplicacionId" asp-items="@ViewBag.tipoApDropDown" class="form-select">
+                        <option disabled selected>--seleccione Tipo ap--</option>
+                    </select>
+
                 </div>
             </div>
+            
 
             <div class="row">
                 <div class="col-md-6">
