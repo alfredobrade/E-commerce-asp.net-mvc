@@ -52,7 +52,24 @@ lo que este seteado en los modelos pero en el cliente
 
 
 
-FontAwesome para descargar iconos 2hs10min
+FontAwesome para descargar iconos 2hs10min fontawesome.com
+-se descarga la libreria, descomprimir y llevar los archivos a wwwroot
+-la invocamos desde layout    <link rel="stylesheet" href="~/fontawesome/css/all.css" />
+en el "text" del boton se lo remplaza con <i class=" -EL-ICONO- "></i>
+
+SweetAlert alertas sweetalert.js.org
+se instala de varias formas $ npm install sweetalert
+Get Started> con NPM y webpack $npm install sweetalert --save 
+despues importar en el front con--  import swal from 'sweetaler';
+pero en el curso usa la de CDN copiando el script y pegarlo en el layout
+<script scr="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+SummerNote para insertar un editor de texto summernote.org tiene una parte de CDN para importar que se pondría en el layout
 
 <form method="post" asp-action="NewProduct" enctype="multipart/form-data">
 enctype="multipart/form-data" porque vamos a trabajar con IMAGENES
+
+
+-hace un ProductoVM donde pone de properties Producto, Lista de categorias y Lista TiposAp
+pero me parece que nada que ver esa Arq porque ahí estaria sirviendo esa ViewModel unicamente
+para la View de NuevoProducto.. y no un MODELO para VIEWS

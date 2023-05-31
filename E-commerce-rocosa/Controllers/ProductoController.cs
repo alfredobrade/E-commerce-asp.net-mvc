@@ -11,9 +11,14 @@ namespace E_commerce_rocosa.Controllers
     public class ProductoController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
-        public ProductoController(ApplicationDbContext context)
+        //para manejar las imagenes creamos una nueva variable read only
+        private readonly IWebHostEnvironment _webHostEnvironment; //y la inyectamos por constructor
+
+        public ProductoController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
-            _dbContext = context;            
+            _dbContext = context;
+            _webHostEnvironment = webHostEnvironment;
+
         }
 
         // GET: ProductoController
@@ -58,7 +63,19 @@ namespace E_commerce_rocosa.Controllers
             
 
             try
-            {
+            {   
+                //todo esto es para manejo de imagenes
+                var files = HttpContext.Request.Form.Files;
+                string webRootPath = _webHostEnvironment.WebRootPath;
+                string upload = webRootPath + WC.ImgRoute;
+                string fileName = Guid.NewGuid().ToString();
+                string extension = Path.GetExtension(files[0].FileName);
+                
+                using (var fileStream = new FileStream(Path.Combine(upload,fileName+extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+
 				_dbContext.Productos.Add(producto);
 				_dbContext.SaveChanges();
 				return RedirectToAction(nameof(Index));
