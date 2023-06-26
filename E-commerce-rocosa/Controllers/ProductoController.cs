@@ -1,5 +1,6 @@
 ﻿using E_commerce_rocosa.Datos;
 using E_commerce_rocosa.Models;
+using E_commerce_rocosa.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -32,7 +33,7 @@ namespace E_commerce_rocosa.Controllers
       
 
         // GET: ProductoController/Create
-        public IActionResult NewProduct()
+        public IActionResult NewProduct() //este metodo le hice con viewBag y al insertOrUpdate le hice con el VM loco
         {
             IEnumerable<SelectListItem> categoriaDropDown =
                 _dbContext.Categoria.Select(p => new SelectListItem
@@ -51,6 +52,8 @@ namespace E_commerce_rocosa.Controllers
                 });
 
             ViewBag.tipoApDropDown = tipoApDropDown;
+
+           
 
             return View();
         }
@@ -75,6 +78,7 @@ namespace E_commerce_rocosa.Controllers
                 {
                     files[0].CopyTo(fileStream);
                 }
+                producto.ImgUrl = fileName + extension;
 
 				_dbContext.Productos.Add(producto);
 				_dbContext.SaveChanges();
@@ -97,35 +101,59 @@ namespace E_commerce_rocosa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> InsertOrUpdate(int? id)
         {
-            IEnumerable<SelectListItem> categoriaDropDown =
-                _dbContext.Categoria.Select(p => new SelectListItem
+            //IEnumerable<SelectListItem> categoriaDropDown =
+            //    _dbContext.Categoria.Select(p => new SelectListItem
+            //    {
+            //        Text = p.NombreCategoria,
+            //        Value = p.Id.ToString()
+            //    });
+
+            //ViewBag.categoriaDD = categoriaDropDown;
+
+
+            //var producto = new Producto();
+
+            ProductoVM productoVM = new ProductoVM()
+            {
+                Producto = new Producto(),
+                CategoriaList = _dbContext.Categoria.Select(p => new SelectListItem
                 {
                     Text = p.NombreCategoria,
                     Value = p.Id.ToString()
-                });
+                }),
+                TipoAplicacionList = _dbContext.TipoAplicacion.Select(p => new SelectListItem
+                {
+                    Text = p.Nombre,
+                    Value = p.Id.ToString()
+                })
 
-            ViewBag.categoriaDD = categoriaDropDown;
+            };
 
-            var producto = new Producto();
+
             if (id == null)
             {
                 try
                 {
-                    _dbContext.Productos.Add(producto);
+                    //_dbContext.Productos.Add(producto);
+                    _dbContext.Productos.Add(productoVM.Producto);
+
                     await _dbContext.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 catch
                 {
-                    return View();
+                    return View(productoVM);
+
                 }
                 //O invocando NewProduct()
             }
             else
             {
-                producto = _dbContext.Productos.Find(id);
+                //producto = _dbContext.Productos.Find(id);
+                productoVM.Producto = _dbContext.Productos.Find(id);
 
-                _dbContext.Productos.Update(producto);
+                //_dbContext.Productos.Update(producto);
+                _dbContext.Productos.Update(productoVM.Producto);
                 await _dbContext.SaveChangesAsync();
                 return View("Index");
                 // o usando metodo Edit

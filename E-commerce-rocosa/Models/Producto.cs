@@ -25,11 +25,11 @@ namespace E_commerce_rocosa.Models
         //Foreign key
         public int? CategoriaId { get; set; }
         [ForeignKey(nameof(CategoriaId))]
-        public virtual Categoria Categoria { get; set; }
+        public virtual Categoria? Categoria { get; set; }
 
         public int? TipoAplicacionId { get; set; }
         [ForeignKey(nameof(TipoAplicacionId))]
-        public virtual TipoAplicacion TipoAplicacion { get; set; }
+        public virtual TipoAplicacion? TipoAplicacion { get; set; }
 
     }
 }
